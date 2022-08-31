@@ -1,0 +1,37 @@
+//
+// Copyright (C) 2018 The Android Open Source Project
+//
+// SPDX-License-Identifier: Apache-2.0
+package {
+    default_applicable_licenses: ["Android-Apache-2.0"],
+}
+cc_binary {
+    name: "android.hardware.power.stats@1.0-service.xiaomi",
+    relative_install_path: "hw",
+    vintf_fragments: ["android.hardware.power.stats@1.0-service.xiaomi.xml"],
+    init_rc: ["android.hardware.power.stats@1.0-service.xiaomi.rc"],
+    srcs: [
+        "service.cpp",
+        "RailDataProvider.cpp",
+        "GpuStateResidencyDataProvider.cpp",
+    ],
+    cflags: [
+        "-Wall",
+        "-Werror",
+    ],
+    static_libs: [
+        "libpixelpowerstats",
+    ],
+    shared_libs: [
+        "libbase",
+        "libcutils",
+        "libfmq",
+        "libhidlbase",
+        "liblog",
+        "libutils",
+        "android.hardware.power.stats@1.0",
+        "pixelpowerstats_provider_aidl_interface-cpp",
+        "libbinder",
+    ],
+    vendor: true,
+}

@@ -1,0 +1,13 @@
+<!--
+    Copyright (C) 2020 The Proton AOSP Project
+    SPDX-License-Identifier: Apache-2.0
+-->
+<resources>
+    <string-array name="configs_device">
+        <!-- Adaptive Sound (Pixel 2020) -->
+        <item>device_personalization_services/AdaptiveAudio__enable_adaptive_audio=true</item>
+        <item>device_personalization_services/AdaptiveAudio__show_promo_notification=true</item>
+        <!-- Screen attention (Pixel 2019) -->
+        <item>device_personalization_services/Attention__enabled=true</item>
+    </string-array>
+</resources>

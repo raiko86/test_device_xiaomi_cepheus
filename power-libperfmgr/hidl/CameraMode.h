@@ -1,0 +1,18 @@
+/*
+ * Copyright (C) 2018 The Android Open Source Project
+ *
+ * SPDX-License-Identifier: Apache-2.0
+ */
+#ifndef POWER_LIBPERFMGR_CAMERAMODE_H_
+#define POWER_LIBPERFMGR_CAMERAMODE_H_
+enum CameraStreamingMode
+{
+    CAMERA_STREAMING_OFF = 0,
+    CAMERA_STREAMING,
+    CAMERA_STREAMING_1080P,
+    CAMERA_STREAMING_60FPS,
+    CAMERA_STREAMING_4K,
+    CAMERA_STREAMING_SECURE,
+    CAMERA_STREAMING_MAX
+};
+#endif // POWER_LIBPERFMGR_CAMERAMODE_H_

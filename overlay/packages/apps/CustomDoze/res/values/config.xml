@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+ * Copyright (c) 2017, The Android Open Source Project
+ *
+ * SPDX-License-Identifier: Apache-2.0
+*/
+-->
+<resources>
+    <!-- Defines the custom proximity sensor used by various OEMs like OnePlus-->
+    <string name="config_custom_tilt">xiaomi.sensor.pickup</string>
+</resources>

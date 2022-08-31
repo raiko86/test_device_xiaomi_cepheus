@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (C) 2009 The Android Open Source Project
+     SPDX-License-Identifier: Apache-2.0
+-->
+<resources>
+    <!-- Use only if devices have variable intensity support for haptics-->
+    <bool name="config_vibration_supports_multiple_intensities">true</bool>
+    <!-- Custom pickup sensor for doze customization -->
+    <string name="pickup_sensor" translatable="false">xiaomi.sensor.pickup</string>
+</resources>

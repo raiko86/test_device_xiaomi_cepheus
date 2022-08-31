@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     Copyright (C) 2022 The LineageOS Project
+     SPDX-License-Identifier: Apache-2.0
+-->
+<resources>
+    <!-- Pick-up to wake gesture-->
+    <string name="wake_gesture_title">Risveglia</string>
+    <string name="wake_gesture_summary">Risveglia il dispositivo invece di mostrare Ambient Display</string>
+</resources>
