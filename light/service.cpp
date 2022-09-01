@@ -21,20 +21,20 @@ using android::sp;
 using android::status_t;
 
 int main() {
-    sp<ILight> service = new Light();
+  sp<ILight> service = new Light();
 
-    configureRpcThreadpool(1, true);
+  configureRpcThreadpool(1, true);
 
-    status_t status = service->registerAsService();
-    if (status != OK) {
-        ALOGE("Cannot register Light HAL service.");
-        return 1;
-    }
-
-    ALOGI("Light HAL service ready.");
-
-    joinRpcThreadpool();
-
-    ALOGI("Light HAL service failed to join thread pool.");
+  status_t status = service->registerAsService();
+  if (status != OK) {
+    ALOGE("Cannot register Light HAL service.");
     return 1;
+  }
+
+  ALOGI("Light HAL service ready.");
+
+  joinRpcThreadpool();
+
+  ALOGI("Light HAL service failed to join thread pool.");
+  return 1;
 }

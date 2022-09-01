@@ -31,9 +31,9 @@
 
 namespace loc_util {
 class LocLoggerBase {
-public:
-    virtual void log() {}
+ public:
+  virtual void log() {}
 };
-}
+}  // namespace loc_util
 
 #endif

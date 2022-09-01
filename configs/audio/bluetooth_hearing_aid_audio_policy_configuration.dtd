@@ -1,0 +1,22 @@
+<!ELEMENT module (mixPorts,devicePorts,routes)>
+<!ATTLIST module name NMTOKEN #REQUIRED>
+<!ATTLIST module halVersion NMTOKEN #REQUIRED>
+<!ELEMENT mixPorts (mixPort)>
+<!ELEMENT mixPort (profile)>
+<!ATTLIST mixPort name CDATA #REQUIRED>
+<!ATTLIST mixPort role NMTOKEN #REQUIRED>
+<!ELEMENT profile EMPTY>
+<!ATTLIST profile name CDATA #REQUIRED>
+<!ATTLIST profile format NMTOKEN #REQUIRED>
+<!ATTLIST profile samplingRates CDATA #REQUIRED>
+<!ATTLIST profile channelMasks NMTOKEN #REQUIRED>
+<!ELEMENT devicePorts (devicePort)>
+<!ELEMENT devicePort EMPTY>
+<!ATTLIST devicePort tagName CDATA #REQUIRED>
+<!ATTLIST devicePort type NMTOKEN #REQUIRED>
+<!ATTLIST devicePort role NMTOKEN #REQUIRED>
+<!ELEMENT routes (route)>
+<!ELEMENT route EMPTY>
+<!ATTLIST route type NMTOKEN #REQUIRED>
+<!ATTLIST route sink CDATA #REQUIRED>
+<!ATTLIST route sources CDATA #REQUIRED>

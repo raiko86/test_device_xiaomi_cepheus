@@ -13,15 +13,15 @@ else
     exit 1
 fi
 
-if [ -f $cfg_file ]; then
+if [ -f "$cfg_file" ]; then
     while IFS="|" read -r action arg; do
         case $action in
-        "insmod") insmod $arg ;;
-        "setprop") setprop $arg 1 ;;
-        "enable") echo 1 >$arg ;;
-        "modprobe") modprobe -a -d /vendor/lib/modules $arg ;;
+        "insmod") insmod "$arg" ;;
+        "setprop") setprop "$arg" 1 ;;
+        "enable") echo 1 >"$arg" ;;
+        "modprobe") modprobe -a -d /vendor/lib/modules "$arg" ;;
         esac
-    done <$cfg_file
+    done <"$cfg_file"
 fi
 
 # set property even if there is no insmod config
