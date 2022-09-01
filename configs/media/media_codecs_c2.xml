@@ -74,6 +74,26 @@
  |          | 720     480     240     40      648000              |
  |__________|_____________________________________________________|
 -->
+<!DOCTYPE Included [
+<!ELEMENT Included (Decoders,Encoders)>
+<!ELEMENT Decoders (MediaCodec+)>
+<!ELEMENT MediaCodec (Alias?,Limit+,Feature+)>
+<!ATTLIST MediaCodec name ID #REQUIRED>
+<!ATTLIST MediaCodec type CDATA #REQUIRED>
+<!ELEMENT Alias EMPTY>
+<!ATTLIST Alias name ID #REQUIRED>
+<!ELEMENT Limit EMPTY>
+<!ATTLIST Limit name (alignment|bitrate|block-count|block-size|blocks-per-second|concurrent-instances|frame-rate|performance-point-1280x720|performance-point-1920x1080|performance-point-1920x1088|performance-point-3840x2160|performance-point-4096x2160|performance-point-4096x2304|performance-point-512x512|performance-point-8192x4320|quality|size) #REQUIRED>
+<!ATTLIST Limit min (1|24|96x96) #IMPLIED>
+<!ATTLIST Limit max (1036800|16|1958400|2073600|4|4096x2304|4096x4096|512x512|6|8192x8192) #IMPLIED>
+<!ATTLIST Limit range (0-100|1-100000000|1-1036800|1-110000000|1-160000000|1-1958400|1-220000000|1-240|1-3916800|1-40000000|1-480|1-60|1024-138240|240|36-36864|480) #IMPLIED>
+<!ATTLIST Limit value (12|120|16x16|24|240|2x2|3|30|40|480|56|60|80|96) #IMPLIED>
+<!ATTLIST Limit default NMTOKEN #IMPLIED>
+<!ELEMENT Feature EMPTY>
+<!ATTLIST Feature name (adaptive-playback|bitrate-modes|intra-refresh|low-latency|secure-playback) #REQUIRED>
+<!ATTLIST Feature required NMTOKEN #IMPLIED>
+<!ATTLIST Feature value CDATA #IMPLIED>
+<!ELEMENT Encoders (MediaCodec+)>]>
 <Included>
     <Decoders>
         <MediaCodec name="c2.qti.avc.decoder" type="video/avc">
@@ -106,13 +126,13 @@
             <Limit name="bitrate" range="1-110000000" />
             <Limit name="frame-rate" range="1-480" />
             <Limit name="concurrent-instances" max="16" />
-            <Feature name="low-latency" />
             <Limit name="performance-point-4096x2304" value="60" />
             <Limit name="performance-point-4096x2160" value="96" />
             <Limit name="performance-point-3840x2160" value="120" />
             <Limit name="performance-point-1920x1088" range="480" />
             <Limit name="performance-point-1920x1088" range="240" />
             <Limit name="performance-point-1280x720" value="480" />
+            <Feature name="low-latency" />
             <Feature name="adaptive-playback" />
         </MediaCodec>
         <MediaCodec name="c2.qti.avc.decoder.secure" type="video/avc" >

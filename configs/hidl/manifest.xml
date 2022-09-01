@@ -1,3 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE manifest [
+<!ELEMENT manifest (hal+)>
+<!ATTLIST manifest version NMTOKEN #REQUIRED>
+<!ATTLIST manifest type NMTOKEN #REQUIRED>
+<!ATTLIST manifest target-level NMTOKEN #REQUIRED>
+<!ELEMENT hal (name,transport,version?,interface*,fqname*,impl?)>
+<!ATTLIST hal format NMTOKEN #FIXED "hidl">
+<!ELEMENT name (#PCDATA)>
+<!ELEMENT transport (#PCDATA)>
+<!ATTLIST transport arch CDATA #IMPLIED>
+<!ELEMENT version (#PCDATA)>
+<!ELEMENT interface (name,instance+)>
+<!ELEMENT instance (#PCDATA)>
+<!ELEMENT fqname (#PCDATA)>
+<!ELEMENT impl EMPTY>
+<!ATTLIST impl level NMTOKEN >]>
 <manifest version="1.0" type="device" target-level="4">
     <hal format="hidl">
         <name>android.hardware.audio</name>

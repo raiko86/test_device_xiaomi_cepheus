@@ -5,6 +5,10 @@
 -->
 <!-- Normally, it's declared by HAL or something, but is's xmlpak after all...
      Needed for ARCore. -->
+<!DOCTYPE permissions [
+<!ELEMENT permissions (feature)>
+<!ELEMENT feature EMPTY>
+<!ATTLIST feature name NMTOKEN #REQUIRED>]>
 <permissions>
     <feature name="android.hardware.camera.ar" />
 </permissions>

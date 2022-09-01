@@ -13,6 +13,12 @@ This XML file declares which signature|privileged permissions should be
 granted to privileged applications on QTI devices.
 It allows additional grants on top of privapp-permissions-platform.xml
 -->
+<!DOCTYPE permissions [
+<!ELEMENT permissions (privapp-permissions+)>
+<!ELEMENT privapp-permissions (permission+)>
+<!ATTLIST privapp-permissions package NMTOKEN #REQUIRED>
+<!ELEMENT permission EMPTY>
+<!ATTLIST permission name NMTOKEN #REQUIRED>]>
 <permissions>
     <privapp-permissions package="com.qualcomm.qcrilmsgtunnel">
         <permission name="android.permission.INTERACT_ACROSS_USERS"/>

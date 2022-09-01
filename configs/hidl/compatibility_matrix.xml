@@ -1,3 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE compatibility-matrix [
+<!ELEMENT compatibility-matrix (hal+)>
+<!ATTLIST compatibility-matrix version NMTOKEN #REQUIRED>
+<!ATTLIST compatibility-matrix type NMTOKEN #REQUIRED>
+<!ELEMENT hal (name,version,interface)>
+<!ATTLIST hal format NMTOKEN #FIXED "hidl">
+<!ATTLIST hal optional NMTOKEN #FIXED "false">
+<!ELEMENT name (#PCDATA)>
+<!ELEMENT version (#PCDATA)>
+<!ELEMENT interface (name,instance)>
+<!ELEMENT instance (#PCDATA)> ]>
 <compatibility-matrix version="1.0" type="device">
     <hal format="hidl" optional="false">
         <name>android.frameworks.schedulerservice</name>

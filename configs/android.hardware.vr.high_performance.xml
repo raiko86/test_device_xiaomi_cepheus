@@ -4,6 +4,10 @@
      SPDX-License-Identifier: Apache-2.0
 -->
 <!-- This is the set of features required for a VR-compatible device -->
+<!DOCTYPE permissions [
+<!ELEMENT permissions (feature+)>
+<!ELEMENT feature EMPTY>
+<!ATTLIST feature name NMTOKEN #REQUIRED>]>
 <permissions>
     <feature name="android.software.vr.mode" />
     <feature name="android.hardware.vr.high_performance" />

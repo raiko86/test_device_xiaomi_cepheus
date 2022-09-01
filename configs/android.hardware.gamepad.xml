@@ -5,6 +5,10 @@
 -->
 <!-- This is the standard feature indicating that the device is a compatible gamepad or includes
      one in the box. -->
+<!DOCTYPE permissions [
+<!ELEMENT permissions (feature)>
+<!ELEMENT feature EMPTY>
+<!ATTLIST feature name NMTOKEN #REQUIRED>]>
 <permissions>
     <feature name="android.hardware.gamepad" />
 </permissions>

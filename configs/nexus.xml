@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- These are configurations that should exist on Google's 2016 and newer Nexus devices. -->
+<!DOCTYPE config [
+<!ELEMENT config (feature+)>
+<!ELEMENT feature EMPTY>
+<!ATTLIST feature name NMTOKEN #REQUIRED>]>
 <config>
     <!-- This is meant to be the canonical feature identifying 2016 and newer Nexus devices. -->
     <feature name="com.google.android.feature.PIXEL_EXPERIENCE" />
