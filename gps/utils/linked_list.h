@@ -1,29 +1,6 @@
 /* Copyright (c) 2011, The Linux Foundation. All rights reserved.
  *
- * Redistribution and use in source and binary forms, with or without
- * modification, are permitted provided that the following conditions are
- * met:
- *     * Redistributions of source code must retain the above copyright
- *       notice, this list of conditions and the following disclaimer.
- *     * Redistributions in binary form must reproduce the above
- *       copyright notice, this list of conditions and the following
- *       disclaimer in the documentation and/or other materials provided
- *       with the distribution.
- *     * Neither the name of The Linux Foundation nor the names of its
- *       contributors may be used to endorse or promote products derived
- *       from this software without specific prior written permission.
- *
- * THIS SOFTWARE IS PROVIDED "AS IS" AND ANY EXPRESS OR IMPLIED
- * WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
- * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT
- * ARE DISCLAIMED.  IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS
- * BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
- * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
- * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR
- * BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
- * WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE
- * OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
- * IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ * SPDX-License-Identifier: Linux-OpenIB
  */
 #ifndef __LINKED_LIST_H__
 #define __LINKED_LIST_H__
@@ -36,23 +13,22 @@ extern "C" {
 #include <stdlib.h>
 
 /** Linked List Return Codes */
-typedef enum
-{
-  eLINKED_LIST_SUCCESS                             = 0,
-     /**< Request was successful. */
-  eLINKED_LIST_FAILURE_GENERAL                     = -1,
-     /**< Failed because of a general failure. */
-  eLINKED_LIST_INVALID_PARAMETER                   = -2,
-     /**< Failed because the request contained invalid parameters. */
-  eLINKED_LIST_INVALID_HANDLE                      = -3,
-     /**< Failed because an invalid handle was specified. */
-  eLINKED_LIST_UNAVAILABLE_RESOURCE                = -4,
-     /**< Failed because an there were not enough resources. */
-  eLINKED_LIST_INSUFFICIENT_BUFFER                 = -5,
-     /**< Failed because an the supplied buffer was too small. */
-  eLINKED_LIST_EMPTY                               = -6
-     /**< Failed because list is empty. */
-}linked_list_err_type;
+typedef enum {
+  eLINKED_LIST_SUCCESS = 0,
+  /**< Request was successful. */
+  eLINKED_LIST_FAILURE_GENERAL = -1,
+  /**< Failed because of a general failure. */
+  eLINKED_LIST_INVALID_PARAMETER = -2,
+  /**< Failed because the request contained invalid parameters. */
+  eLINKED_LIST_INVALID_HANDLE = -3,
+  /**< Failed because an invalid handle was specified. */
+  eLINKED_LIST_UNAVAILABLE_RESOURCE = -4,
+  /**< Failed because an there were not enough resources. */
+  eLINKED_LIST_INSUFFICIENT_BUFFER = -5,
+  /**< Failed because an the supplied buffer was too small. */
+  eLINKED_LIST_EMPTY = -6
+  /**< Failed because list is empty. */
+} linked_list_err_type;
 
 /*===========================================================================
 FUNCTION    linked_list_init
@@ -117,7 +93,8 @@ SIDE EFFECTS
    N/A
 
 ===========================================================================*/
-linked_list_err_type linked_list_add(void* list_data, void *data_obj, void (*dealloc)(void*));
+linked_list_err_type linked_list_add(void* list_data, void* data_obj,
+                                     void (*dealloc)(void*));
 
 /*===========================================================================
 FUNCTION    linked_list_remove
@@ -139,7 +116,7 @@ SIDE EFFECTS
    N/A
 
 ===========================================================================*/
-linked_list_err_type linked_list_remove(void* list_data, void **data_obj);
+linked_list_err_type linked_list_remove(void* list_data, void** data_obj);
 
 /*===========================================================================
 FUNCTION    linked_list_empty
@@ -208,7 +185,7 @@ SIDE EFFECTS
    N/A
 
 ===========================================================================*/
-linked_list_err_type linked_list_search(void* list_data, void **data_p,
+linked_list_err_type linked_list_search(void* list_data, void** data_p,
                                         bool (*equal)(void* data_0, void* data),
                                         void* data_0, bool rm_if_found);
 
