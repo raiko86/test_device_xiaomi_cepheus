@@ -2,9 +2,9 @@
 <!--
   ~ Copyright (C) 2020 The Android Open Source Project
   ~
-  ~ SPDX-License-Identifier: Apache-2.0.
+  ~ SPDX-License-Identifier: Apache-2.0
   -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-  <!-- [CHAR_LIMIT=NONE] Developer Settings: Label for the option that masks the display cutout, i.e. it smoothen the display cutout like original MIUI style.-->
-  <string name="display_cutout_emulation_overlay">Smoothen Cutout</string>
+    <!-- [CHAR_LIMIT=NONE] Developer Settings: Label for the option that masks the display cutout, i.e. it smoothen the display cutout like original MIUI style.-->
+    <string name="display_cutout_emulation_overlay">Smoothen Cutout</string>
 </resources>

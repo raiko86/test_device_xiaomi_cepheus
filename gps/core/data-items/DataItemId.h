@@ -26,15 +26,16 @@
  * IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *
  */
+
 #ifndef __DATAITEMID_H__
 #define __DATAITEMID_H__
+
 /**
  * Enumeration of Data Item types
  * When add/remove/update changes are made to Data Items, this file needs to be updated
  * accordingly
  */
-typedef enum e_DataItemId
-{
+typedef enum e_DataItemId {
     INVALID_DATA_ITEM_ID = -1,
     // 0 - 4
     AIRPLANEMODE_DATA_ITEM_ID,
@@ -66,9 +67,13 @@ typedef enum e_DataItemId
     BTLE_SCAN_DATA_ITEM_ID,
     BT_SCAN_DATA_ITEM_ID,
     OEM_GTP_UPLOAD_TRIGGER_READY_ITEM_ID,
+
     MAX_DATA_ITEM_ID,
+
     // 26 -
     BATTERY_LEVEL_DATA_ITEM_ID,
+
     MAX_DATA_ITEM_ID_1_1,
 } DataItemId;
+
 #endif // #ifndef __DATAITEMID_H__

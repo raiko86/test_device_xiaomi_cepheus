@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (C) 2014 The Android Open Source Project
+
+     SPDX-License-Identifier: Apache-2.0
+-->
+<!-- Normally, it's declared by HAL or something, but is's xmlpak after all...
+     Needed for ARCore. -->
+<permissions>
+    <feature name="android.hardware.camera.ar" />
+</permissions>

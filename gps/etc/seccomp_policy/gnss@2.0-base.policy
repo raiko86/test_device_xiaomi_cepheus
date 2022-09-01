@@ -27,6 +27,7 @@
 #  IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
 #******************************************************************************
+
 clone: 1
 close: 1
 connect: 1
@@ -72,6 +73,8 @@ lseek: 1
 ##ioctl: arg1 == _IOC(_IOC_NONE || arg1 == _IOC(_IOC_READ || arg1 == VSOC_MAYBE_SEND_INTERRUPT_TO_HOST
 ioctl: 1
 clock_gettime: 1
+
+
 socket: arg0 == AF_INET6 || arg0 == AF_UNIX || arg0 == AF_QIPCRTR
 connect: 1
 setsockopt: 1
@@ -83,7 +86,10 @@ accept4: 1
 listen: 1
 bind: 1
 pipe2: 1
+
 recvmsg: 1
 sendmsg: 1
+
 sendto: 1
 recvfrom: 1
+

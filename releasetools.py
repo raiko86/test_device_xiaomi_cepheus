@@ -1,21 +1,24 @@
 # Copyright (C) 2009 The Android Open Source Project
-#
-# Copyright (C) 2022 The LineageOS Project
+# Copyright (C) 2019 The Mokee Open Source Project
+# Copyright (C) 2020 The LineageOS Open Source Project
 #
 # SPDX-License-Identifier: Apache-2.0
-#
+
 import common
 import re
+
 def FullOTA_InstallEnd(info):
   input_zip = info.input_zip
   OTA_UpdateFirmware(info)
   OTA_InstallEnd(info, input_zip)
   return
+
 def IncrementalOTA_InstallEnd(info):
   input_zip = info.target_zip
   OTA_UpdateFirmware(info)
   OTA_InstallEnd(info, input_zip)
   return
+
 def OTA_UpdateFirmware(info):
   info.script.AppendExtra('package_extract_file("install/firmware-update/abl.elf", "/dev/block/bootdevice/by-name/abl");')
   info.script.AppendExtra('package_extract_file("install/firmware-update/abl.elf", "/dev/block/bootdevice/by-name/ablbak");')
@@ -47,16 +50,19 @@ def OTA_UpdateFirmware(info):
   info.script.AppendExtra('package_extract_file("install/firmware-update/xbl.elf", "/dev/block/bootdevice/by-name/xblbak");')
   info.script.AppendExtra('package_extract_file("install/firmware-update/xbl_config.elf", "/dev/block/bootdevice/by-name/xbl_config");')
   info.script.AppendExtra('package_extract_file("install/firmware-update/xbl_config.elf", "/dev/block/bootdevice/by-name/xbl_configbak");')
+
 def AddImage(info, input_zip, basename, dest):
   path = "IMAGES/" + basename
   if path not in input_zip.namelist():
     return
+
   data = input_zip.read(path)
   common.ZipWriteStr(info.output_zip, basename, data)
   info.script.Print("Flashing {} image".format(dest.split('/')[-1]))
   info.script.AppendExtra('package_extract_file("%s", "%s");' % (basename, dest))
+
 def OTA_InstallEnd(info, input_zip):
-  info.script.Print("Patching firmware images...")
+  info.script.Print("Patching dtbo and vbmeta images...")
   AddImage(info, input_zip, "dtbo.img", "/dev/block/bootdevice/by-name/dtbo")
   AddImage(info, input_zip, "vbmeta.img", "/dev/block/bootdevice/by-name/vbmeta")
   return

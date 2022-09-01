@@ -1,7 +1,8 @@
 //
-// Copyright (C) 2022 The LineageOS Project
+// Copyright (C) 2017-2020 The LineageOS Project
 //
 // SPDX-License-Identifier: Apache-2.0
+
 cc_binary {
     name: "android.hardware.biometrics.fingerprint@2.3-service.cepheus",
     relative_install_path: "hw",
@@ -23,6 +24,7 @@ cc_binary {
     ],
     proprietary: true,
 }
+
 cc_library_static {
     name: "libudfps_extension.cepheus",
     srcs: ["UdfpsExtension.cpp"],

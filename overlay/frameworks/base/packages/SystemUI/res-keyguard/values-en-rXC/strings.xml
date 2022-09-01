@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+/* //device/apps/common/assets/res/any/strings.xml
+**
+** Copyright 2006, The Android Open Source Project
+**
+** SPDX-License-Identifier: Apache-2.0
+*/
+-->
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <!-- When the lock screen is showing and the phone plugged in, and the battery
+         is not fully charged, and it's plugged into a fast charger, say that it's charging fast.  -->
+    <string name="keyguard_plugged_in_charging_fast">
+        <xliff:g id="percentage">%s</xliff:g> • Turbo charging
+    </string>
+</resources>

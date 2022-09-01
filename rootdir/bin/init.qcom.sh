@@ -1,4 +1,5 @@
 #! /vendor/bin/sh
+
 # Copyright (c) 2009-2016, The Linux Foundation. All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without
@@ -25,6 +26,7 @@
 # OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
 # ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
+
 #
 # Make modem config folder and copy firmware config to that folder for RIL
 #
@@ -33,6 +35,7 @@ if [ -f /data/vendor/modem_config/ver_info.txt ]; then
 else
     prev_version_info=""
 fi
+
 cur_version_info=$(cat /vendor/firmware_mnt/verinfo/ver_info.txt)
 if [ ! -f /vendor/firmware_mnt/verinfo/ver_info.txt -o "$prev_version_info" != "$cur_version_info" ]; then
     # add W for group recursively before delete

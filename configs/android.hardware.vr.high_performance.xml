@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (C) 2016 The Android Open Source Project
+
+     SPDX-License-Identifier: Apache-2.0
+-->
+<!-- This is the set of features required for a VR-compatible device -->
+<permissions>
+    <feature name="android.software.vr.mode" />
+    <feature name="android.hardware.vr.high_performance" />
+</permissions>

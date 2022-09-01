@@ -6,9 +6,11 @@
 #
 # Not a Contribution.
 #
+
 # Copyright (C) 2019 The Android Open Source Project
 #
 # SPDX-License-Identifier: Apache-2.0
+
 futex: 1
 # ioctl calls are filtered via the selinux policy.
 ioctl: 1
@@ -21,6 +23,7 @@ mmap2: arg2 in ~PROT_EXEC || arg2 in ~PROT_WRITE
 memfd_create: 1
 ftruncate: 1
 ftruncate64: 1
+
 mremap: arg3 == 3
 munmap: 1
 prctl: 1
@@ -54,6 +57,7 @@ restart_syscall: 1
 rt_sigreturn: 1
 getrandom: 1
 madvise: 1
+
 # crash dump policy additions
 sigreturn: 1
 clock_gettime: 1

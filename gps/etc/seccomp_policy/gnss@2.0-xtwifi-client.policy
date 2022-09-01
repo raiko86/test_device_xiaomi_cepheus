@@ -28,6 +28,7 @@
 #  IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
 #******************************************************************************
+
 fdatasync: 1
 getdents64: 1
 gettimeofday: 1
@@ -36,6 +37,7 @@ lseek: 1
 madvise: 1
 mkdirat: 1
 pwrite64: 1
+
 timerfd_create: 1
 timerfd_settime: 1
 epoll_create1: 1

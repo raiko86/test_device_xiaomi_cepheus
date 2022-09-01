@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (C) 2014 The Android Open Source Project
+
+     SPDX-License-Identifier: Apache-2.0
+-->
+<!-- This is the standard feature indicating that the device is a compatible gamepad or includes
+     one in the box. -->
+<permissions>
+    <feature name="android.hardware.gamepad" />
+</permissions>

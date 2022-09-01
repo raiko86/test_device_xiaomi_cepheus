@@ -1,5 +1,6 @@
 # For diag over socket
 allow kernel self:qipcrtr_socket create;
+
 userdebug_or_eng(`
   allow kernel vendor_debugfs_wlan:dir search;
   allow kernel vendor_debugfs_ipc:dir search;

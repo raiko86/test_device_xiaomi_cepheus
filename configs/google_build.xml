@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (C) 2014 The Android Open Source Project
+
+     SPDX-License-Identifier: Apache-2.0
+-->
+<!-- These are configurations that should exist on Google's own Nexus and GPe devices. -->
+<config>
+    <feature name="com.google.android.feature.GOOGLE_BUILD" />
+    <!-- This should be added to all Nexus and GPe devices -->
+    <feature name="com.google.android.feature.GOOGLE_EXPERIENCE" />
+    <!-- This should declare the version of Exchange that ships -->
+    <feature name="com.google.android.feature.EXCHANGE_6_2" />
+</config>

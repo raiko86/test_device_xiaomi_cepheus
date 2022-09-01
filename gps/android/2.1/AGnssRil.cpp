@@ -5,9 +5,21 @@
 /*
  * Copyright (C) 2016 The Android Open Source Project
  *
- * SPDX-License-Identifier: Apache-2.0
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
+
 #define LOG_TAG "LocSvc__AGnssRilInterface"
+
 #include <log_util.h>
 #include <dlfcn.h>
 #include <sys/types.h>
@@ -18,24 +30,31 @@
 #include "Gnss.h"
 #include "AGnssRil.h"
 #include <DataItemConcreteTypesBase.h>
+
 typedef void* (getLocationInterface)();
+
 namespace android {
 namespace hardware {
 namespace gnss {
 namespace V2_1 {
 namespace implementation {
+
+
 AGnssRil::AGnssRil(Gnss* gnss) : mGnss(gnss) {
     ENTRY_LOG_CALLFLOW();
 }
+
 AGnssRil::~AGnssRil() {
     ENTRY_LOG_CALLFLOW();
 }
+
 Return<bool> AGnssRil::updateNetworkState(bool connected, NetworkType type, bool /*roaming*/) {
     ENTRY_LOG_CALLFLOW();
     // Extra NetworkTypes not available in IAgnssRil enums
     const int NetworkType_BLUETOOTH = 7;
     const int NetworkType_ETHERNET = 9;
     const int NetworkType_PROXY = 16;
+
     // for XTRA
     if (nullptr != mGnss && ( nullptr != mGnss->getGnssInterface() )) {
         int8_t typeout = loc_core::TYPE_UNKNOWN;
@@ -89,6 +108,7 @@ Return<bool> AGnssRil::updateNetworkState(bool connected, NetworkType type, bool
 }
 Return<bool> AGnssRil::updateNetworkState_2_0(const V2_0::IAGnssRil::NetworkAttributes& attributes) {
     ENTRY_LOG_CALLFLOW();
+
     if (nullptr != mGnss && (nullptr != mGnss->getGnssInterface())) {
         int8_t typeout = loc_core::TYPE_UNKNOWN;
         bool roaming = false;
@@ -105,6 +125,7 @@ Return<bool> AGnssRil::updateNetworkState_2_0(const V2_0::IAGnssRil::NetworkAttr
     }
     return true;
 }
+
 }  // namespace implementation
 }  // namespace V2_1
 }  // namespace gnss

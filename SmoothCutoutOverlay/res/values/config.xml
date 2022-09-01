@@ -1,10 +1,10 @@
 <!--
   ~ Copyright (C) 2020 The Android Open Source Project
   ~
-  ~ SPDX-License-Identifier: Apache-2.0.
+  ~ SPDX-License-Identifier: Apache-2.0
   -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-     <!-- The bounding path of the cutout region of the main built-in display.
+    <!-- The bounding path of the cutout region of the main built-in display.
          Must either be empty if there is no cutout region, or a string that is parsable by
          {@link android.util.PathParser}.
  
@@ -15,5 +15,5 @@
           appended after the path string to interpret coordinates in dp instead of px units.
           Note that a physical cutout should be configured in pixels for the best results.
           -->
-     <string translatable="false" name="config_mainBuiltInDisplayCutout">M-128,0 C-93.0495212,0 -73.0986004,10.7268852 -52.7866989,44.7100544 C-41.8225823,63.0604145 -22.0817847,75 0.00269388614,75 C22.0871725,75 41.8225823,63.0604145 52.7920867,44.7100544 C73.0986004,10.7268852 93.054909,0 128,0 L-128,0 Z</string>
+    <string translatable="false" name="config_mainBuiltInDisplayCutout">M-128,0 C-93.0495212,0 -73.0986004,10.7268852 -52.7866989,44.7100544 C-41.8225823,63.0604145 -22.0817847,75 0.00269388614,75 C22.0871725,75 41.8225823,63.0604145 52.7920867,44.7100544 C73.0986004,10.7268852 93.054909,0 128,0 L-128,0 Z</string>
 </resources>

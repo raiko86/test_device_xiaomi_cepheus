@@ -26,7 +26,9 @@
  * IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *
  */
+
 #define LOG_NDEBUG 0
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
@@ -36,149 +38,184 @@
 #include "msg_q.h"
 #include <loc_pla.h>
 #include "LogBuffer.h"
-#define BUFFER_SIZE 120
+
+#define  BUFFER_SIZE  120
+
 // Logging Improvements
-const char *loc_logger_boolStr[] = {"False", "True"};
-const char VOID_RET[] = "None";
-const char FROM_AFW[] = "===>";
-const char TO_MODEM[] = "--->";
+const char *loc_logger_boolStr[]={"False","True"};
+const char VOID_RET[]   = "None";
+const char FROM_AFW[]   = "===>";
+const char TO_MODEM[]   = "--->";
 const char FROM_MODEM[] = "<---";
-const char TO_AFW[] = "<===";
-const char EXIT_TAG[] = "Exiting";
-const char ENTRY_TAG[] = "Entering";
-const char EXIT_ERROR_TAG[] = "Exiting with error";
+const char TO_AFW[]     = "<===";
+const char EXIT_TAG[]   = "Exiting";
+const char ENTRY_TAG[]  = "Entering";
+const char EXIT_ERROR_TAG[]  = "Exiting with error";
+
 int build_type_prop = BUILD_TYPE_PROP_NA;
+
 const string gEmptyStr = "";
 const string gUnknownStr = "UNKNOWN";
 /* Logging Mechanism */
 loc_logger_s_type loc_logger;
+
 /* returns the least signification bit that is set in the mask
    Param
       mask -        bit mask.
       clearTheBit - if true, mask gets modified upon return.
    returns 0 if mask is 0.
 */
-uint64_t loc_get_least_bit(uint64_t &mask, bool clearTheBit)
-{
-   uint64_t bit = 0;
-   if (mask > 0)
-   {
-      uint64_t less1 = mask - 1;
-      bit = mask & ~(less1);
-      if (clearTheBit)
-      {
-         mask &= less1;
-      }
-   }
-   return bit;
+uint64_t loc_get_least_bit(uint64_t& mask, bool clearTheBit) {
+    uint64_t bit = 0;
+
+    if (mask > 0) {
+        uint64_t less1 = mask - 1;
+        bit = mask & ~(less1);
+        if (clearTheBit) {
+            mask &= less1;
+        }
+    }
+
+    return bit;
 }
-string loc_get_bit_defs(uint64_t mask, const NameValTbl &tbl)
-{
-   string out;
-   while (mask > 0)
-   {
-      out += loc_get_name_from_tbl(tbl, loc_get_least_bit(mask));
-      if (mask > 0)
-      {
-         out += " | ";
-      }
-   }
-   return out;
+
+string loc_get_bit_defs(uint64_t mask, const NameValTbl& tbl) {
+    string out;
+    while (mask > 0) {
+        out += loc_get_name_from_tbl(tbl, loc_get_least_bit(mask));
+        if (mask > 0) {
+            out += " | ";
+        }
+    }
+    return out;
 }
+
 DECLARE_TBL(loc_msg_q_status) =
-    {
-        NAME_VAL(eMSG_Q_SUCCESS),
-        NAME_VAL(eMSG_Q_FAILURE_GENERAL),
-        NAME_VAL(eMSG_Q_INVALID_PARAMETER),
-        NAME_VAL(eMSG_Q_INVALID_HANDLE),
-        NAME_VAL(eMSG_Q_UNAVAILABLE_RESOURCE),
-        NAME_VAL(eMSG_Q_INSUFFICIENT_BUFFER)};
-/* Find msg_q status name */
-const char *loc_get_msg_q_status(int status)
 {
-   return loc_get_name_from_val(loc_msg_q_status_tbl, (int64_t)status);
+    NAME_VAL( eMSG_Q_SUCCESS ),
+    NAME_VAL( eMSG_Q_FAILURE_GENERAL ),
+    NAME_VAL( eMSG_Q_INVALID_PARAMETER ),
+    NAME_VAL( eMSG_Q_INVALID_HANDLE ),
+    NAME_VAL( eMSG_Q_UNAVAILABLE_RESOURCE ),
+    NAME_VAL( eMSG_Q_INSUFFICIENT_BUFFER )
+};
+
+/* Find msg_q status name */
+const char* loc_get_msg_q_status(int status)
+{
+   return loc_get_name_from_val(loc_msg_q_status_tbl, (int64_t) status);
 }
-// Target names
+
+//Target names
 DECLARE_TBL(target_name) =
-    {
-        NAME_VAL(GNSS_NONE),
-        NAME_VAL(GNSS_MSM),
-        NAME_VAL(GNSS_GSS),
-        NAME_VAL(GNSS_MDM),
-        NAME_VAL(GNSS_AUTO),
-        NAME_VAL(GNSS_UNKNOWN)};
+{
+    NAME_VAL(GNSS_NONE),
+    NAME_VAL(GNSS_MSM),
+    NAME_VAL(GNSS_GSS),
+    NAME_VAL(GNSS_MDM),
+    NAME_VAL(GNSS_AUTO),
+    NAME_VAL(GNSS_UNKNOWN)
+};
+
 /*===========================================================================
+
 FUNCTION loc_get_target_name
+
 DESCRIPTION
    Returns pointer to a string that contains name of the target
+
    XX:XX:XX.000\0
+
 RETURN VALUE
    The target name string
+
 ===========================================================================*/
 const char *loc_get_target_name(unsigned int target)
 {
-   int64_t index = 0;
-   static char ret[BUFFER_SIZE];
-   snprintf(ret, sizeof(ret), " %s with%s SSC",
-            loc_get_name_from_val(target_name_tbl, getTargetGnssType(target)),
-            ((target & HAS_SSC) == HAS_SSC) ? gEmptyStr.c_str() : "out");
-   return ret;
+    int64_t index = 0;
+    static char ret[BUFFER_SIZE];
+
+    snprintf(ret, sizeof(ret), " %s with%s SSC",
+             loc_get_name_from_val(target_name_tbl, getTargetGnssType(target)),
+             ((target & HAS_SSC) == HAS_SSC) ? gEmptyStr.c_str() : "out");
+
+    return ret;
 }
+
+
 /*===========================================================================
+
 FUNCTION loc_get_time
+
 DESCRIPTION
    Logs a callback event header.
    The pointer time_string should point to a buffer of at least 13 bytes:
+
    XX:XX:XX.000\0
+
 RETURN VALUE
    The time string
+
 ===========================================================================*/
 char *loc_get_time(char *time_string, size_t buf_size)
 {
-   struct timeval now;  /* sec and usec     */
-   struct tm now_tm;    /* broken-down time */
-   char hms_string[80]; /* HH:MM:SS         */
+   struct timeval now;     /* sec and usec     */
+   struct tm now_tm;       /* broken-down time */
+   char hms_string[80];    /* HH:MM:SS         */
+
    gettimeofday(&now, NULL);
    localtime_r(&now.tv_sec, &now_tm);
+
    strftime(hms_string, sizeof hms_string, "%H:%M:%S", &now_tm);
-   snprintf(time_string, buf_size, "%s.%03d", hms_string, (int)(now.tv_usec / 1000));
+   snprintf(time_string, buf_size, "%s.%03d", hms_string, (int) (now.tv_usec / 1000));
+
    return time_string;
 }
+
 /*===========================================================================
 FUNCTION get_timestamp
+
 DESCRIPTION
    Generates a timestamp using the current system time
+
 DEPENDENCIES
    N/A
+
 RETURN VALUE
    Char pointer to the parameter str
+
 SIDE EFFECTS
    N/A
 ===========================================================================*/
-char *get_timestamp(char *str, unsigned long buf_size)
+char * get_timestamp(char *str, unsigned long buf_size)
 {
-   struct timeval tv;
-   struct timezone tz;
-   int hh, mm, ss;
-   gettimeofday(&tv, &tz);
-   hh = tv.tv_sec / 3600 % 24;
-   mm = (tv.tv_sec % 3600) / 60;
-   ss = tv.tv_sec % 60;
-   snprintf(str, buf_size, "%02d:%02d:%02d.%06ld", hh, mm, ss, tv.tv_usec);
-   return str;
+  struct timeval tv;
+  struct timezone tz;
+  int hh, mm, ss;
+  gettimeofday(&tv, &tz);
+  hh = tv.tv_sec/3600%24;
+  mm = (tv.tv_sec%3600)/60;
+  ss = tv.tv_sec%60;
+  snprintf(str, buf_size, "%02d:%02d:%02d.%06ld", hh, mm, ss, tv.tv_usec);
+  return str;
 }
+
 /*===========================================================================
+
 FUNCTION log_buffer_insert
+
 DESCRIPTION
    Insert a log sentence with specific level to the log buffer.
+
 RETURN VALUE
    N/A
+
 ===========================================================================*/
 void log_buffer_insert(char *str, unsigned long buf_size, int level)
 {
-   timespec tv;
-   clock_gettime(CLOCK_BOOTTIME, &tv);
-   uint64_t elapsedTime = (uint64_t)tv.tv_sec + (uint64_t)tv.tv_nsec / 1000000000;
-   string ss = str;
-   loc_util::LogBuffer::getInstance()->append(ss, level, elapsedTime);
+    timespec tv;
+    clock_gettime(CLOCK_BOOTTIME, &tv);
+    uint64_t elapsedTime = (uint64_t)tv.tv_sec + (uint64_t)tv.tv_nsec/1000000000;
+    string ss = str;
+    loc_util::LogBuffer::getInstance()->append(ss, level, elapsedTime);
 }

@@ -28,12 +28,12 @@
  */
 #ifndef LOC_LOGGER_BASE_H
 #define LOC_LOGGER_BASE_H
-namespace loc_util
-{
-    class LocLoggerBase
-    {
-    public:
-        virtual void log() {}
-    };
+
+namespace loc_util {
+class LocLoggerBase {
+public:
+    virtual void log() {}
+};
 }
+
 #endif

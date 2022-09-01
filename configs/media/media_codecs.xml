@@ -2,9 +2,9 @@
 <!-- Copyright (C) 2012-2020 The Linux Foundation. All rights reserved.
      Not a contribution.
      Copyright (C) 2012-2013 The Android Open Source Project
+
      SPDX-License-Identifier: Apache-2.0
 -->
-<!--
 <!DOCTYPE MediaCodecs [
 <!ELEMENT Include EMPTY>
 <!ATTLIST Include href CDATA #REQUIRED>
@@ -13,19 +13,24 @@
 <!ELEMENT Encoders (MediaCodec|Include)*>
 <!ELEMENT MediaCodec (Type|Quirk|Include)*>
 <!ATTLIST MediaCodec name CDATA #REQUIRED>
-<!ATTLIST MediaCodec type CDATA>
+<!ATTLIST MediaCodec type CDATA >
 <!ELEMENT Type EMPTY>
 <!ATTLIST Type name CDATA #REQUIRED>
 <!ELEMENT Quirk EMPTY>
 <!ATTLIST Quirk name CDATA #REQUIRED>
 ]>
+<!--
 There's a simple and a complex syntax to declare the availability of a
 media codec:
+
 A codec that properly follows the OpenMax spec and therefore doesn't have any
 quirks and that only supports a single content type can be declared like so:
+
     <MediaCodec name="OMX.foo.bar" type="something/interesting" />
+
 If a codec has quirks OR supports multiple content types, the following syntax
 can be used:
+
     <MediaCodec name="OMX.foo.bar" >
         <Type name="something/interesting" />
         <Type name="something/else" />
@@ -34,15 +39,19 @@ can be used:
         <Quirk name="requires-allocate-on-output-ports" />
         <Quirk name="output-buffers-are-unreadable" />
     </MediaCodec>
+
 Only the three quirks included above are recognized at this point:
+
 "requires-allocate-on-input-ports"
     must be advertised if the component does not properly support specification
     of input buffers using the OMX_UseBuffer(...) API but instead requires
     OMX_AllocateBuffer to be used.
+
 "requires-allocate-on-output-ports"
     must be advertised if the component does not properly support specification
     of output buffers using the OMX_UseBuffer(...) API but instead requires
     OMX_AllocateBuffer to be used.
+
 "output-buffers-are-unreadable"
     must be advertised if the emitted output buffers of a decoder component
     are not readable, i.e. use a custom format even though abusing one of
@@ -55,6 +64,8 @@ Only the three quirks included above are recognized at this point:
     corresponding color space converter for thumbnail extraction,
     matching surfaceflinger support that can render the custom format to
     a texture and possibly other code, so just DON'T USE THIS QUIRK.
+
+
 -->
 <!--
  Non-Secure decoder capabilities
@@ -89,6 +100,7 @@ Only the three quirks included above are recognized at this point:
  | h263-sw     | 864     480     30      16       48600       48600  |
  | mpeg2       | 1920    1088    30      40      244800      244800  |
  |_____________|_____________________________________________________|
+
  Secure decoder capabilities
  (MB is defined as 16x16)
  __________________________________________________________________
@@ -111,6 +123,7 @@ Only the three quirks included above are recognized at this point:
  |          | 4096    2304    30      40      1105920             |
  | mpeg2    | 1920    1088    30      40      244800      244800  |
  |__________|_____________________________________________________|
+
  Non-Secure encoder capabilities (Secure not supported)
  (MB is defined as 16x16)
  __________________________________________________________________
